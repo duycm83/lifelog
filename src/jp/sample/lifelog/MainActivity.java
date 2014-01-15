@@ -2,12 +2,12 @@ package jp.sample.lifelog;
 
 import android.content.Context;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -47,8 +47,33 @@ public class MainActivity extends FragmentActivity {
                         location.getLatitude(), location.getLongitude()), 15.0f));
 
             }
+
+			@Override
+			public void onStatusChanged(String provider, int status, Bundle extras) {
+				// TODO 自動生成されたメソッド・スタブ
+				
+			}
+
+			@Override
+			public void onProviderEnabled(String provider) {
+				// TODO 自動生成されたメソッド・スタブ
+				
+			}
+
+			@Override
+			public void onProviderDisabled(String provider) {
+				// TODO 自動生成されたメソッド・スタブ
+				
+			}
         };
-//        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, (android.location.LocationListener) ll);
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, ll);
+        double lon = 139.857777;
+        double lat = 35.716903;
+//        lon = 139.457069;
+//        lat = 35.805854;
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(
+        		lat, lon), 16.0f));
     }
 
     @Override
